@@ -1,0 +1,113 @@
+.relative{
+  position: relative;
+}
+
+.absolute{
+  position: absolute;
+}
+
+.testFor{
+  /*allWordsDiv'i relative yapıp ondan konum almak için bu css*/
+  top: 0%;
+  left: 50%;                      /*en solu merkez alarak parent'ın boyutunun yarısı kadar ilerliyor*/
+  transform: translateX( -50%);   /*X ekseninde kendi boyutunun yarısı kadar negatif yönde ilerliyor*/
+  
+}
+
+.allPage{
+  height: 100%;
+  width: 100%;
+  
+}
+
+.allWordsDiv{
+  margin: 80px auto 0;
+  width: 500px;
+  height: 700px;
+  /* border: 1px red solid; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2%;
+  
+}
+
+.wordDiv{
+  width: 320px;
+  height: 60px;
+  /* border: 1px darkblue solid; */
+  display: grid;
+  grid-template-columns: repeat(5, 58px);
+  gap: 6px;
+  justify-content: center;
+}
+
+.letterDiv{
+  height: 58px;
+  width: 58px;
+  border: 1px rgb(100, 98, 98) solid;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  font-size: 60px;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Helvetica Neue';
+  transition: background 0s linear 0.5s, transform 1s linear;
+  color: white;
+  background-color: black;
+}
+
+.bgGreen{
+  background-color: rgb(18, 130, 18);
+  /* transform: rotate(360deg); */
+  transform: rotateX(360deg);
+}
+
+.bgYellow{
+  background-color: rgb(206, 212, 21);
+  /* transform: rotate(360deg); */
+  transform: rotateX(360deg);
+}
+
+.bgGrey{
+  background-color: rgb(61, 58, 58);
+  /* transform: rotate(360deg); */
+  transform: rotateX(360deg);
+}
+
+.wordInput{
+  height: 1px;
+  width: 1px;
+  opacity: 0;
+}
+
+.goButton{
+  background-color: rgb(18, 130, 18);
+}
+
+.goButton:hover{
+  background-color: rgb(18, 130, 18);
+}
+
+.errorMessage{
+  height: 60px;
+  width: 320px;
+  justify-content: center;
+  display: flex;
+  background-color: black;
+  border: white solid 1px;
+  border-radius: 20px;
+  color: white;
+  align-items: center;
+  z-index: 1;
+  opacity: 0.8;
+  font-size: larger;
+  transform: translate(0,-110%);
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.makeOpaque{
+  opacity: 1;
+}
