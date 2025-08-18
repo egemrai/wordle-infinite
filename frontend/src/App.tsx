@@ -45,7 +45,8 @@ function App() {
           acc[letter] = (acc[letter]||0)+1
           return acc
         },{})
-    ) 
+    )
+    wordInput.current?.focus()
   },[])
 
   
