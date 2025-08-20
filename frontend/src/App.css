@@ -77,8 +77,12 @@
 }
 
 .wordInput{
-  height: 1px;
-  width: 1px;
+  height: 100px;
+  width: 100px;
+  opacity: 1;
+}
+
+.wordInput:disabled{
   opacity: 0;
 }
 
@@ -94,6 +98,7 @@
   height: 60px;
   width: 320px;
   justify-content: center;
+  text-align: center;
   display: flex;
   background-color: black;
   border: white solid 1px;
