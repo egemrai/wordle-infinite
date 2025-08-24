@@ -62,7 +62,7 @@ function App() {
         },{})
     )
 
-    const userAgent = navigator.userAgent || navigator.vendor //mobile kontrol
+    const userAgent = navigator.userAgent //mobile kontrol
     setIsMobile(/android|iphone|ipad|ipod/i.test(userAgent))
 
     wordInput.current?.focus()
