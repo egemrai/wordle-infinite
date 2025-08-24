@@ -20,6 +20,7 @@ function App() {
   const[finalWordArray, setFinalWordArray] = useState<string[]>(process.env.REACT_APP_TheWord!.split('')||['l','u','n','n','a'])
   const[finalWordLetterCount, setFinalWordLetterCount] = useState<Record<string,number>>({})
   const[found, setFound] = useState<boolean>(false)
+  const[isMobile, setIsMobile] = useState<boolean>(false)
 
   const wordInput = useRef<HTMLElement|null>(null)
 
@@ -60,6 +61,10 @@ function App() {
           return acc
         },{})
     )
+
+    const userAgent = navigator.userAgent || navigator.vendor //mobile kontrol
+    setIsMobile(/android|iphone|ipad|ipod/i.test(userAgent))
+
     wordInput.current?.focus()
   },[])
 
@@ -408,6 +413,7 @@ function App() {
         }}>
         
           <Form.Control
+          readOnly={true && false}
           disabled={found}
           className='wordInput'
           autoComplete='off'
