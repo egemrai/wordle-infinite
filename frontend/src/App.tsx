@@ -413,7 +413,7 @@ function App() {
         }}>
         
           <Form.Control
-          readOnly={true && false}
+          readOnly={isMobile}
           disabled={found}
           className='wordInput'
           autoComplete='off'
