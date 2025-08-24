@@ -4,7 +4,8 @@ import './App.css';
 import { useForm } from 'react-hook-form';
 import { Button, Form } from "react-bootstrap";
 import WordForTable from './components/WordForTable';
-import words from './words';
+import words from './data/words';
+import alphabet from './data/alphabet';
 //oyunu kazanamazsan da bi şeyler ekle, submit enter falan onu ayarla
 function App() {
 
@@ -41,6 +42,18 @@ function App() {
     }
   }
 
+  const alphabetKeys = alphabet.map((letter,i)=>{
+    return (
+      <button key={i} id={`${letter}`+'Letter'} className='alphabetLetterBox'
+      onClick={()=>{
+        if((wordInput.current as HTMLInputElement).value.length < 5){
+          {setCurrentGuess((wordInput.current as HTMLInputElement).value + letter);
+          (wordInput.current as HTMLInputElement).value = (wordInput.current as HTMLInputElement).value + letter}
+        }
+      }}>{letter}</button>
+    )
+  })
+
   useEffect(()=>{
     setFinalWordLetterCount(finalWordArray.reduce((acc:any,letter)=>{
           acc[letter] = (acc[letter]||0)+1
@@ -54,7 +67,7 @@ function App() {
   useEffect(()=>{
     if(guessLevel===1){
       const guess = document.getElementById('1stGuess')
-
+      
       let letterCount:Record<string,number> = finalWordLetterCount // Bulunması gereken kelimenin harflerinden tahmin edilen kelimenin harfleri yeşil denk gelirse, o arflerin sayısını düşüyorum finalWordLetterCount'den.
       let foundCount = 5  // harf doğruysa 1 azalıcak, hepsi doğru olup 0 olduğunda oyun biticek
 
@@ -66,13 +79,18 @@ function App() {
 
       for(let i=0; i<5; i++){
         if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          guess?.children[i].classList.add('bgGreen')
+          guess?.children[i].classList.add('bgGreen')                                                                 // tablodaki kutuyu yeşil yapmak için
+          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGreen')  // alfabeyi yeşil yapmak için
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] >0){
-          guess?.children[i].classList.add('bgYellow')
+          guess?.children[i].classList.add('bgYellow')                                                                // tablodaki kutuyu sarı yapmak için
+          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgYellow') // alfabeyi sarı yapmak için
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] === undefined || letterCount[guess?.children[i].innerHTML.replace(' ','')!] === 0){
-          guess?.children[i].classList.add('bgGrey')
+          guess?.children[i].classList.add('bgGrey')                                                                  // tablodaki kutuyu gri yapmak için
+          if(!document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.contains('bgYellow')){
+            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // tablodaki kutuyu gri yapmak için
+          }   
         }
       }
 
@@ -103,13 +121,18 @@ function App() {
 
       for(let i=0; i<5; i++){
         if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          guess?.children[i].classList.add('bgGreen')
+          guess?.children[i].classList.add('bgGreen')                                                                 // tablodaki kutuyu yeşil yapmak için
+          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGreen')  // alfabeyi yeşil yapmak için
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] >0){
-          guess?.children[i].classList.add('bgYellow')
+          guess?.children[i].classList.add('bgYellow')                                                                // tablodaki kutuyu sarı yapmak için
+          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgYellow') // alfabeyi sarı yapmak için
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] === undefined || letterCount[guess?.children[i].innerHTML.replace(' ','')!] === 0){
-          guess?.children[i].classList.add('bgGrey')
+          guess?.children[i].classList.add('bgGrey')                                                                  // tablodaki kutuyu gri yapmak için
+          if(!document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.contains('bgYellow')){
+            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // tablodaki kutuyu gri yapmak için
+          }   
         }
       }
 
@@ -140,13 +163,18 @@ function App() {
 
       for(let i=0; i<5; i++){
         if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          guess?.children[i].classList.add('bgGreen')
+          guess?.children[i].classList.add('bgGreen')                                                                 // tablodaki kutuyu yeşil yapmak için
+          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGreen')  // alfabeyi yeşil yapmak için
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] >0){
-          guess?.children[i].classList.add('bgYellow')
+          guess?.children[i].classList.add('bgYellow')                                                                // tablodaki kutuyu sarı yapmak için
+          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgYellow') // alfabeyi sarı yapmak için
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] === undefined || letterCount[guess?.children[i].innerHTML.replace(' ','')!] === 0){
-          guess?.children[i].classList.add('bgGrey')
+          guess?.children[i].classList.add('bgGrey')                                                                  // tablodaki kutuyu gri yapmak için
+          if(!document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.contains('bgYellow')){
+            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // tablodaki kutuyu gri yapmak için
+          }   
         }
       }
 
@@ -177,13 +205,18 @@ function App() {
 
       for(let i=0; i<5; i++){
         if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          guess?.children[i].classList.add('bgGreen')
+          guess?.children[i].classList.add('bgGreen')                                                                 // tablodaki kutuyu yeşil yapmak için
+          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGreen')  // alfabeyi yeşil yapmak için
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] >0){
-          guess?.children[i].classList.add('bgYellow')
+          guess?.children[i].classList.add('bgYellow')                                                                // tablodaki kutuyu sarı yapmak için
+          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgYellow') // alfabeyi sarı yapmak için
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] === undefined || letterCount[guess?.children[i].innerHTML.replace(' ','')!] === 0){
-          guess?.children[i].classList.add('bgGrey')
+          guess?.children[i].classList.add('bgGrey')                                                                  // tablodaki kutuyu gri yapmak için
+          if(!document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.contains('bgYellow')){
+            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // tablodaki kutuyu gri yapmak için
+          }   
         }
       }
 
@@ -202,6 +235,7 @@ function App() {
 
     if(guessLevel===5){
       const guess = document.getElementById('5thGuess')
+      const correctWord = document.getElementById('correctWord')
 
       let letterCount:Record<string,number> = finalWordLetterCount // Bulunması gereken kelimenin harflerinden tahmin edilen kelimenin harfleri yeşil denk gelirse, o arflerin sayısını düşüyorum finalWordLetterCount'den.
       let foundCount = 5  // harf doğruysa 1 azalıcak, hepsi doğru olup 0 olduğunda oyun biticek
@@ -214,13 +248,18 @@ function App() {
 
       for(let i=0; i<5; i++){
         if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          guess?.children[i].classList.add('bgGreen')
+          guess?.children[i].classList.add('bgGreen')                                                                 // tablodaki kutuyu yeşil yapmak için
+          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGreen')  // alfabeyi yeşil yapmak için
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] >0){
-          guess?.children[i].classList.add('bgYellow')
+          guess?.children[i].classList.add('bgYellow')                                                                // tablodaki kutuyu sarı yapmak için
+          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgYellow') // alfabeyi sarı yapmak için
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] === undefined || letterCount[guess?.children[i].innerHTML.replace(' ','')!] === 0){
-          guess?.children[i].classList.add('bgGrey')
+          guess?.children[i].classList.add('bgGrey')                                                                  // tablodaki kutuyu gri yapmak için
+          if(!document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.contains('bgYellow')){
+            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // tablodaki kutuyu gri yapmak için
+          }   
         }
       }
 
@@ -235,6 +274,14 @@ function App() {
           }
         }
       }
+      if(foundCount > 0){
+        document.getElementById('successMessage')!.innerHTML = "Bir kelimeyi bulamadın hoş geldin demet akalın"
+        document.getElementById('successMessage')?.classList.add('makeOpaque')
+
+        for(let i=0; i<5; i++){
+          correctWord?.children[i].classList.add('bgGreen')
+        }
+      }
     }
   },[guessLevel])
   
@@ -246,11 +293,11 @@ function App() {
       onKeyDown={(e)=>{
         if(e.key==="Enter"){
           // e.preventDefault()
-          alert('ege')
+          
           // handleSubmit(pushNewWord)()
         }
       }}>
-        <div className="allWordsDiv ">
+        <div id='mainDiv' className="allWordsDiv test">
           <div className="wordDiv relative">
             <p className="letterDiv"></p>
             <p className="letterDiv"></p>
@@ -314,25 +361,44 @@ function App() {
             <p className="letterDiv"></p>
             <p className="letterDiv"></p>
             <p className="letterDiv"></p>
-            <div className="wordDiv absolute">
-              {guessLevel===5 && <WordForTable word={finalWord}/> }
+            <div id='correctWord' className="wordDiv absolute">
+              {guessLevel===5 && found ===false && <WordForTable word={finalWord}/> }
             </div>
           </div>
 
-          <Button
-          // onClick={()=>{handleSubmit(pushNewWord)() }}
-          id='goButton'
-          className='goButton'
-          type='submit'
-          disabled={isSubmitting||found||true}
-          form="enterButtonTest">GO</Button>
+          <div className='alphabetDiv'>
+            {alphabetKeys}
+
+            <button
+            onClick={()=>{setCurrentGuess((wordInput.current as HTMLInputElement).value.slice(0,(wordInput.current as HTMLInputElement).value.length-1));
+                          (wordInput.current as HTMLInputElement).value = (wordInput.current as HTMLInputElement).value.slice(0,(wordInput.current as HTMLInputElement).value.length-1)
+            }}
+            id='deleteButton'
+            className='deleteButton'
+            type='button'
+            >
+              del
+            </button>
+
+            <button
+            // onClick={()=>{handleSubmit(pushNewWord)() }}
+            id='goButton'
+            className='enterButton'
+            type='submit'
+            disabled={isSubmitting||found}
+            form="enterButton">
+              enter
+            </button>
+          </div>
+          
+
+          
+
         </div>
 
         <Form onSubmit={handleSubmit(pushNewWord)}
         id="enterButton"
         onKeyDown={(e)=>{
-          console.log('harf basıldı sürekli')
-          console.log('harf basıldı sürekli2')
           wordInput.current?.focus()
           if(e.key==='Enter'){
             // e.preventDefault()
@@ -342,14 +408,10 @@ function App() {
         }}>
         
           <Form.Control
-          // onKeyDown={(e)=>{
-          //   if(e.key==='Enter'){
-          //     handleSubmit(pushNewWord)()
-          //   }
-          // }}
           disabled={found}
           className='wordInput'
           autoComplete='off'
+          autoFocus={true}
           maxLength={5}
           {...register("word",{
                   required:"Required",
@@ -367,6 +429,7 @@ function App() {
             setCurrentGuess(e.currentTarget.value)
           }}
           // onChange={(e)=>{
+          //   e.currentTarget.value = e.currentTarget.value.replace(/[^abcçdefgğhıijklmnoöprsştuüvyz]/g, "")
           //   setCurrentGuess(e.target.value)
           // }}
           />
