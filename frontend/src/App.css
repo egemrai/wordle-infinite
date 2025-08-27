@@ -61,13 +61,13 @@
 }
 
 .alphabetDiv{
-  width: 700px;
+  min-width: 700px;
   height: 160px;
   display: flex;
   position: relative;
   justify-content: center;
   flex-wrap: wrap;
-  border: 1px rgb(100, 98, 98) solid;
+  border: 1px red solid;
 }
 
 .alphabetLetterBox{
