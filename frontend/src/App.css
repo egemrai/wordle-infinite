@@ -83,6 +83,7 @@
   color: white;
   background-color: rgb(18, 18, 18);
   border: 1px rgb(100, 98, 98) solid;
+  color: red;
 }
 
 .deleteButton{
