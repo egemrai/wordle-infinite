@@ -71,8 +71,8 @@
 }
 
 .alphabetLetterBox{
-  height: 44px;
-  min-width: 44px;
+  height: 52px;
+  min-width: 52px;
   display: flex;
   margin: 0.5%;
   padding: 0;
@@ -86,8 +86,8 @@
 }
 
 .deleteButton{
-  height: 44px;
-  min-width: 44px;
+  height: 52px;
+  min-width: 52px;
   display: flex;
   position: absolute;
   left: 0;
