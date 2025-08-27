@@ -70,10 +70,11 @@ function App() {
 
   
   useEffect(()=>{
+    console.log("finalWordLetterCount:",finalWordLetterCount)
     if(guessLevel===1){
       const guess = document.getElementById('1stGuess')
       
-      let letterCount:Record<string,number> = finalWordLetterCount // Bulunması gereken kelimenin harflerinden tahmin edilen kelimenin harfleri yeşil denk gelirse, o arflerin sayısını düşüyorum finalWordLetterCount'den.
+      let letterCount:Record<string,number> = {...finalWordLetterCount} // Bulunması gereken kelimenin harflerinden tahmin edilen kelimenin harfleri yeşil denk gelirse, o arflerin sayısını düşüyorum finalWordLetterCount'den.
       let foundCount = 5  // harf doğruysa 1 azalıcak, hepsi doğru olup 0 olduğunda oyun biticek
 
       for(let i=0; i<5; i++){
@@ -86,15 +87,17 @@ function App() {
         if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
           guess?.children[i].classList.add('bgGreen')                                                                 // tablodaki kutuyu yeşil yapmak için
           document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGreen')  // alfabeyi yeşil yapmak için
+          // letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1 //letterCountda harf yeşil yanarsa ve hala 1 tane daha varsa, 1 harf kalmasına rağmen 2 kere sarı yanmasın diye
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] >0){
           guess?.children[i].classList.add('bgYellow')                                                                // tablodaki kutuyu sarı yapmak için
           document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgYellow') // alfabeyi sarı yapmak için
+          letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1 //letterCountda harf sarı yanarsa, harfin değerini 1 düşürüyorum ki tekrar o harf gelirse 1 tane olmasına rağmen 2. harf de sarı yanıp 2 tane o harften varmış gibi göstermesin diye
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] === undefined || letterCount[guess?.children[i].innerHTML.replace(' ','')!] === 0){
           guess?.children[i].classList.add('bgGrey')                                                                  // tablodaki kutuyu gri yapmak için
           if(!document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.contains('bgYellow')){
-            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // tablodaki kutuyu gri yapmak için
+            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // alfabeyi gri yapmak için
           }   
         }
       }
@@ -110,12 +113,13 @@ function App() {
           }
         }
       }
+      console.log("letterCount1.:",letterCount)
     }
 
     if(guessLevel===2){
       const guess = document.getElementById('2ndGuess')
 
-      let letterCount:Record<string,number> = finalWordLetterCount // Bulunması gereken kelimenin harflerinden tahmin edilen kelimenin harfleri yeşil denk gelirse, o arflerin sayısını düşüyorum finalWordLetterCount'den.
+      let letterCount:Record<string,number> = {...finalWordLetterCount} // Bulunması gereken kelimenin harflerinden tahmin edilen kelimenin harfleri yeşil denk gelirse, o arflerin sayısını düşüyorum finalWordLetterCount'den.
       let foundCount = 5  // harf doğruysa 1 azalıcak, hepsi doğru olup 0 olduğunda oyun biticek
 
       for(let i=0; i<5; i++){
@@ -128,15 +132,17 @@ function App() {
         if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
           guess?.children[i].classList.add('bgGreen')                                                                 // tablodaki kutuyu yeşil yapmak için
           document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGreen')  // alfabeyi yeşil yapmak için
+          // letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] >0){
           guess?.children[i].classList.add('bgYellow')                                                                // tablodaki kutuyu sarı yapmak için
           document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgYellow') // alfabeyi sarı yapmak için
+          letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] === undefined || letterCount[guess?.children[i].innerHTML.replace(' ','')!] === 0){
           guess?.children[i].classList.add('bgGrey')                                                                  // tablodaki kutuyu gri yapmak için
           if(!document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.contains('bgYellow')){
-            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // tablodaki kutuyu gri yapmak için
+            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // alfabeyi gri yapmak için
           }   
         }
       }
@@ -152,12 +158,13 @@ function App() {
           }
         }
       }
+      console.log("letterCount2.:",letterCount)
     }
 
     if(guessLevel===3){
       const guess = document.getElementById('3rdGuess')
 
-      let letterCount:Record<string,number> = finalWordLetterCount // Bulunması gereken kelimenin harflerinden tahmin edilen kelimenin harfleri yeşil denk gelirse, o arflerin sayısını düşüyorum finalWordLetterCount'den.
+      let letterCount:Record<string,number> = {...finalWordLetterCount} // Bulunması gereken kelimenin harflerinden tahmin edilen kelimenin harfleri yeşil denk gelirse, o arflerin sayısını düşüyorum finalWordLetterCount'den.
       let foundCount = 5  // harf doğruysa 1 azalıcak, hepsi doğru olup 0 olduğunda oyun biticek
 
       for(let i=0; i<5; i++){
@@ -170,15 +177,17 @@ function App() {
         if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
           guess?.children[i].classList.add('bgGreen')                                                                 // tablodaki kutuyu yeşil yapmak için
           document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGreen')  // alfabeyi yeşil yapmak için
+          // letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] >0){
           guess?.children[i].classList.add('bgYellow')                                                                // tablodaki kutuyu sarı yapmak için
           document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgYellow') // alfabeyi sarı yapmak için
+          letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] === undefined || letterCount[guess?.children[i].innerHTML.replace(' ','')!] === 0){
           guess?.children[i].classList.add('bgGrey')                                                                  // tablodaki kutuyu gri yapmak için
           if(!document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.contains('bgYellow')){
-            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // tablodaki kutuyu gri yapmak için
+            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // alfabeyi gri yapmak için
           }   
         }
       }
@@ -194,12 +203,14 @@ function App() {
           }
         }
       }
+      console.log("letterCount3.:",letterCount)
+      console.log("finalWordLetterCount.:",finalWordLetterCount)
     }
 
     if(guessLevel===4){
       const guess = document.getElementById('4thGuess')
 
-      let letterCount:Record<string,number> = finalWordLetterCount // Bulunması gereken kelimenin harflerinden tahmin edilen kelimenin harfleri yeşil denk gelirse, o arflerin sayısını düşüyorum finalWordLetterCount'den.
+      let letterCount:Record<string,number> = {...finalWordLetterCount} // Bulunması gereken kelimenin harflerinden tahmin edilen kelimenin harfleri yeşil denk gelirse, o arflerin sayısını düşüyorum finalWordLetterCount'den.
       let foundCount = 5  // harf doğruysa 1 azalıcak, hepsi doğru olup 0 olduğunda oyun biticek
 
       for(let i=0; i<5; i++){
@@ -212,15 +223,17 @@ function App() {
         if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
           guess?.children[i].classList.add('bgGreen')                                                                 // tablodaki kutuyu yeşil yapmak için
           document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGreen')  // alfabeyi yeşil yapmak için
+          // letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] >0){
           guess?.children[i].classList.add('bgYellow')                                                                // tablodaki kutuyu sarı yapmak için
           document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgYellow') // alfabeyi sarı yapmak için
+          letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] === undefined || letterCount[guess?.children[i].innerHTML.replace(' ','')!] === 0){
           guess?.children[i].classList.add('bgGrey')                                                                  // tablodaki kutuyu gri yapmak için
           if(!document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.contains('bgYellow')){
-            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // tablodaki kutuyu gri yapmak için
+            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // alfabeyi gri yapmak için
           }   
         }
       }
@@ -242,7 +255,7 @@ function App() {
       const guess = document.getElementById('5thGuess')
       const correctWord = document.getElementById('correctWord')
 
-      let letterCount:Record<string,number> = finalWordLetterCount // Bulunması gereken kelimenin harflerinden tahmin edilen kelimenin harfleri yeşil denk gelirse, o arflerin sayısını düşüyorum finalWordLetterCount'den.
+      let letterCount:Record<string,number> = {...finalWordLetterCount} // Bulunması gereken kelimenin harflerinden tahmin edilen kelimenin harfleri yeşil denk gelirse, o arflerin sayısını düşüyorum finalWordLetterCount'den.
       let foundCount = 5  // harf doğruysa 1 azalıcak, hepsi doğru olup 0 olduğunda oyun biticek
 
       for(let i=0; i<5; i++){
@@ -255,15 +268,17 @@ function App() {
         if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
           guess?.children[i].classList.add('bgGreen')                                                                 // tablodaki kutuyu yeşil yapmak için
           document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGreen')  // alfabeyi yeşil yapmak için
+          // letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] >0){
           guess?.children[i].classList.add('bgYellow')                                                                // tablodaki kutuyu sarı yapmak için
           document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgYellow') // alfabeyi sarı yapmak için
+          letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1
         }
         else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] === undefined || letterCount[guess?.children[i].innerHTML.replace(' ','')!] === 0){
           guess?.children[i].classList.add('bgGrey')                                                                  // tablodaki kutuyu gri yapmak için
           if(!document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.contains('bgYellow')){
-            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // tablodaki kutuyu gri yapmak için
+            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // alfabeyi gri yapmak için
           }   
         }
       }
