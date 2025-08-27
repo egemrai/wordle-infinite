@@ -24,7 +24,7 @@
 
 .allWordsDiv{
   margin: 80px auto 0;
-  width: 766px;
+  min-width: 766px;
   height: 600px;
   /* border: 1px red solid; */
   display: flex;
@@ -71,8 +71,8 @@
 }
 
 .alphabetLetterBox{
-  height: 52px;
-  min-width: 52px;
+  min-height: 62px;
+  min-width: 62px;
   display: flex;
   margin: 0.5%;
   padding: 0;
