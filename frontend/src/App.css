@@ -25,6 +25,7 @@
 .allWordsDiv{
   margin: 80px auto 0;
   width: 820px;
+  max-width: 820px;
   min-width: 820px;
   height: 600px;
   /* border: 1px red solid; */
