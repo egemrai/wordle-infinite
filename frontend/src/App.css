@@ -20,11 +20,11 @@
   
 }
 
-@media (max-width: 1768px){
+@media (max-width: 1600px){
 
 .allWordsDiv{
   margin: 80px auto 0;
-  min-width: 766px;
+  min-width: 820px;
   height: 600px;
   /* border: 1px red solid; */
   display: flex;
@@ -61,8 +61,8 @@
 }
 
 .alphabetDiv{
-  width: 700px;
-  height: 160px;
+  width: 800px;
+  height: 200px;
   display: flex;
   position: relative;
   justify-content: center;
