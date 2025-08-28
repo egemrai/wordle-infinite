@@ -27,7 +27,7 @@
 @media (max-width: 1600px){
 
 .allWordsDiv{
-  margin: 350px auto 0;
+  margin: 200px auto 0;
   width: 820px;
   max-width: 820px;
   min-width: 820px;
@@ -71,6 +71,7 @@
   min-width: 700px;
   height: 246px;
   min-height: 246px;
+  margin-top: 150px;
   display: flex;
   position: relative;
   justify-content: center;
