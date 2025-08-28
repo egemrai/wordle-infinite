@@ -20,7 +20,7 @@
   
 }
 
-@media (max-width: 1800px){
+@media (max-width: 2800px){
 
 .allWordsDiv{
   margin: 80px auto 0;
@@ -69,7 +69,6 @@
   position: relative;
   justify-content: center;
   flex-wrap: wrap;
-  border: 11px red solid;
 }
 
 .alphabetLetterBox{
@@ -194,7 +193,7 @@
   position: relative;
   justify-content: center;
   flex-wrap: wrap;
-  border: 11px red solid;
+  border: 1px rgb(100, 98, 98) solid;
 }
 
 .alphabetLetterBox{
