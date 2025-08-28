@@ -20,7 +20,7 @@
   
 }
 
-@media (max-width: 22800px){
+@media (max-width: 1600px){
 
 .allWordsDiv{
   margin: 80px auto 0;
@@ -150,7 +150,9 @@
 
 }
 
-.allWordsDiv{
+@media (min-width: 1601px){
+
+  .allWordsDiv{
   margin: 80px auto 0;
   width: 500px;
   height: 700px;
@@ -213,37 +215,6 @@
   border: 1px rgb(100, 98, 98) solid;
 }
 
-.bgGreen{
-  background-color: rgb(8, 84, 8) !important;
-  /* transform: rotate(360deg); */
-  transform: rotateX(360deg);
-}
-
-.bgYellow{
-  background-color: rgb(193, 199, 20);
-  /* transform: rotate(360deg); */
-  transform: rotateX(360deg);
-}
-
-.bgGrey{
-  background-color: rgb(61, 58, 58);
-  /* transform: rotate(360deg); */
-  transform: rotateX(360deg);
-}
-
-.wordInput{
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 0.1px;
-  width: 0.1px;
-  opacity: 0;
-}
-
-.wordInput:disabled{
-  opacity: 0;
-}
-
 .deleteButton{
   height: 50px;
   min-width: 50px;
@@ -298,6 +269,42 @@
   opacity: 0;
   transition: opacity 1s;
 }
+}
+
+
+
+.bgGreen{
+  background-color: rgb(8, 84, 8) !important;
+  /* transform: rotate(360deg); */
+  transform: rotateX(360deg);
+}
+
+.bgYellow{
+  background-color: rgb(193, 199, 20);
+  /* transform: rotate(360deg); */
+  transform: rotateX(360deg);
+}
+
+.bgGrey{
+  background-color: rgb(61, 58, 58);
+  /* transform: rotate(360deg); */
+  transform: rotateX(360deg);
+}
+
+.wordInput{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 0.1px;
+  width: 0.1px;
+  opacity: 0;
+}
+
+.wordInput:disabled{
+  opacity: 0;
+}
+
+
 
 .makeOpaque{
   opacity: 1;
