@@ -64,7 +64,7 @@
   width: 700px;
   min-width: 700px;
   height: 246px;
-  min-height: 246px;
+  height: 246px;
   display: flex;
   position: relative;
   justify-content: center;
@@ -72,9 +72,9 @@
 }
 
 .alphabetLetterBox{
-  height: 162px;
+  height: 62px;
   min-height: 62px;
-  width: 162px;
+  width: 62px;
   min-width: 62px;
   display: flex;
   margin: 0.5%;
