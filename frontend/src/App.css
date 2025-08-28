@@ -63,8 +63,8 @@
 .alphabetDiv{
   width: 700px;
   min-width: 700px;
-  height: 260px;
-  min-height: 260px;
+  height: 250px;
+  min-height: 250px;
   display: flex;
   position: relative;
   justify-content: center;
