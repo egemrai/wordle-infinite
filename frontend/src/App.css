@@ -41,7 +41,7 @@
 }
 
 .wordDiv{
-  width: 360px;
+  width: 400px;
   height: 72px;
   /* border: 1px darkblue solid; */
   display: grid;
@@ -135,8 +135,8 @@
 }
 
 .errorMessage{
-  height: 54px;
-  width: 280px;
+  height: 72px;
+  width: 400px;
   justify-content: center;
   text-align: center;
   display: flex;
@@ -147,7 +147,7 @@
   align-items: center;
   z-index: 1;
   opacity: 0.8;
-  font-size: larger;
+  font-size: 40px;
   transform: translate(0,-110%);
   opacity: 0;
   transition: opacity 1s;
