@@ -61,7 +61,7 @@
 }
 
 .alphabetDiv{
-  width: 800px;
+  min-width: 800px;
   height: 200px;
   display: flex;
   position: relative;
