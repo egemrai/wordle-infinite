@@ -41,8 +41,8 @@
 }
 
 .wordDiv{
-  width: 280px;
-  height: 50px;
+  width: 360px;
+  height: 72px;
   /* border: 1px darkblue solid; */
   display: grid;
   grid-template-columns: repeat(5, 58px);
@@ -51,13 +51,13 @@
 }
 
 .letterDiv{
-  height: 48px;
-  width: 48px;
+  height: 70px;
+  width: 70px;
   border: 1px rgb(100, 98, 98) solid;
   display: flex;
   margin: 0;
   padding: 0;
-  font-size: 50px;
+  font-size: 60px;
   justify-content: center;
   align-items: center;
   font-family: 'Helvetica Neue';
@@ -71,7 +71,7 @@
   min-width: 700px;
   height: 246px;
   min-height: 246px;
-  margin-top: 150px;
+  margin-top: 130px;
   display: flex;
   position: relative;
   justify-content: center;
