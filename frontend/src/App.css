@@ -99,7 +99,7 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  transform: translate(-160%,-16%);
+  transform: translate(-60%,-16%);
   margin: 1%;
   padding: 0;
   font-size: 26px;
@@ -107,7 +107,7 @@
   align-items: center;
   color: white;
   background-color: rgb(18, 18, 18);
-  border: 11px rgb(100, 98, 98) solid;
+  border: 1px rgb(100, 98, 98) solid;
 }
 
 .enterButton{
@@ -118,7 +118,7 @@
   position: absolute;
   right: 0;
   bottom: 0;
-  transform: translate(140%,-16%);
+  transform: translate(60%,-16%);
   margin: 1%;
   padding: 0;
   font-size: 26px;
@@ -126,7 +126,7 @@
   align-items: center;
   color: white;
   background-color: rgb(18, 18, 18);
-  border: 11px rgb(100, 98, 98) solid;
+  border: 1px rgb(100, 98, 98) solid;
 }
 
 .errorMessage{
