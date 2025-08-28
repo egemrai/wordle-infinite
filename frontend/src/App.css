@@ -72,6 +72,7 @@
 .alphabetLetterBox{
   min-height: 92px;
   min-width: 92px;
+  width: 92px;
   display: flex;
   margin: 0.5%;
   padding: 0;
