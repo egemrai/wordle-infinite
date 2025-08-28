@@ -45,7 +45,7 @@
   height: 72px;
   /* border: 1px darkblue solid; */
   display: grid;
-  grid-template-columns: repeat(5, 58px);
+  grid-template-columns: repeat(5, 72px);
   gap: 3px;
   justify-content: center;
 }
@@ -135,7 +135,7 @@
 }
 
 .errorMessage{
-  height: 72px;
+  height: 100px;
   width: 400px;
   justify-content: center;
   text-align: center;
@@ -147,7 +147,7 @@
   align-items: center;
   z-index: 1;
   opacity: 0.8;
-  font-size: 40px;
+  font-size: 30px;
   transform: translate(0,-110%);
   opacity: 0;
   transition: opacity 1s;
