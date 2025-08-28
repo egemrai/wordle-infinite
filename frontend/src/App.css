@@ -202,7 +202,7 @@
   position: relative;
   justify-content: center;
   flex-wrap: wrap;
-  border: 1px rgb(100, 98, 98) solid;
+  /* border: 1px rgb(100, 98, 98) solid; */
 }
 
 .alphabetLetterBox{

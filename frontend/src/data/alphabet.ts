@@ -1,3 +1,3 @@
- const alphabet = ['a','b','c','ç','d','e','f','g','ğ','h','ı','i','j','k','l','m','n','o','ö','p','r','s','ş','t','u','ü','v','y','z']
+ const alphabet = ['e','r','t','y','u','ı','o','p','ğ','ü','a','s','d','f','g','h','j','k','l','ş','i','z','c','v','b','n','m','ö','ç']
 
  export default alphabet
