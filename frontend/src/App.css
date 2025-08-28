@@ -20,7 +20,7 @@
   
 }
 
-@media (max-width: 1800px){
+@media (max-width: 1600px){
 
 .allWordsDiv{
   margin: 80px auto 0;
@@ -62,21 +62,21 @@
 
 .alphabetDiv{
   width: 700px;
+  min-width: 700px;
   height: 246px;
-  flex-grow: 0;
-  flex-shrink: 0;
   min-height: 246px;
   display: flex;
   position: relative;
   justify-content: center;
   flex-wrap: wrap;
+  border: 11px red solid;
 }
 
 .alphabetLetterBox{
   height: 62px;
+  min-height: 62px;
   width: 62px;
-  flex-grow: 0;
-  flex-shrink: 0;
+  min-width: 62px;
   display: flex;
   margin: 0.5%;
   padding: 0;
@@ -91,9 +91,9 @@
 
 .deleteButton{
   height: 62px;
+  min-height: 62px;
   width: 62px;
-  flex-grow: 0;
-  flex-shrink: 0;
+  min-width: 62px;
   display: flex;
   position: absolute;
   left: 0;
@@ -111,9 +111,8 @@
 
 .enterButton{
   height: 62px;
+  min-height: 62px;
   width: 72px;
-  flex-grow: 0;
-  flex-shrink: 0;
   display: flex;
   position: absolute;
   right: 0;
