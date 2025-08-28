@@ -71,7 +71,9 @@
 
 .alphabetLetterBox{
   height: 62px;
+  min-height: 62px;
   width: 62px;
+  min-width: 62px;
   display: flex;
   margin: 0.5%;
   padding: 0;
@@ -86,7 +88,9 @@
 
 .deleteButton{
   height: 62px;
+  min-height: 62px;
   width: 62px;
+  min-width: 62px;
   display: flex;
   position: absolute;
   left: 0;
@@ -104,6 +108,7 @@
 
 .enterButton{
   height: 62px;
+  min-height: 62px;
   width: 72px;
   display: flex;
   position: absolute;
