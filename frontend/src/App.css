@@ -1,3 +1,7 @@
+* {
+  touch-action: manipulation;  /*manipulation değeri, kaydırma ve sıkıştırarak zoom’u (pinch zoom) engellemeden double-tap zoom özelliğini devre dışı bırakır.*/
+}
+
 .relative{
   position: relative;
 }
@@ -118,7 +122,7 @@
   position: absolute;
   right: 0;
   bottom: 0;
-  transform: translate(60%,-16%);
+  transform: translate(64%,-16%);
   margin: 1%;
   padding: 0;
   font-size: 26px;
