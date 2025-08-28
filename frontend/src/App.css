@@ -42,7 +42,7 @@
   /* border: 1px darkblue solid; */
   display: grid;
   grid-template-columns: repeat(5, 58px);
-  gap: 5px;
+  gap: 3px;
   justify-content: center;
 }
 
@@ -79,7 +79,7 @@
   width: 62px;
   min-width: 62px;
   display: flex;
-  margin: 0.5%;
+  margin: 1%;
   padding: 0;
   font-size: 36px;
   justify-content: center;
