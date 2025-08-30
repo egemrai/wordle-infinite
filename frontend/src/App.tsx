@@ -12,12 +12,12 @@ function App() {
   interface word{
     word:string
   }
-
+  const [randomNumber, setRandomNumber] = useState<number>(Math.floor(Math.random()*words.length))
   const[guessLevel, setGuessLevel] = useState<number>(0)
   const[currentGuess, setCurrentGuess] = useState<string>('')
   const[allGuesses, setAllGuesses] = useState<string[]>([])
-  const[finalWord, setFinalWord] = useState<string>(words[Math.floor(Math.random()*words.length)]||'lunna')
-  const[finalWordArray, setFinalWordArray] = useState<string[]>(words[Math.floor(Math.random()*words.length)].split('')||['l','u','n','n','a'])
+  const[finalWord, setFinalWord] = useState<string>(words[randomNumber]||'lunna')
+  const[finalWordArray, setFinalWordArray] = useState<string[]>(words[randomNumber].split('')||['l','u','n','n','a'])
   const[finalWordLetterCount, setFinalWordLetterCount] = useState<Record<string,number>>({})
   const[found, setFound] = useState<boolean>(false)
   const[isMobile, setIsMobile] = useState<boolean>(false)
