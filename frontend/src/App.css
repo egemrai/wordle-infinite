@@ -153,6 +153,22 @@
   transition: opacity 1s;
 }
 
+.resetButton{
+  height: 60px;
+  width: 60px;
+  color: white;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(18, 18, 18);
+  border: 1px rgb(100, 98, 98) solid;
+  border-radius: 30px;
+  right: 0;
+  top: 0;
+  transform: translateY(-120%);
+}
+
 }
 
 @media (min-width: 1601px){
@@ -274,6 +290,23 @@
   opacity: 0;
   transition: opacity 1s;
 }
+
+.resetButton{
+  height: 60px;
+  width: 60px;
+  color: white;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(18, 18, 18);
+  border: 1px rgb(100, 98, 98) solid;
+  border-radius: 30px;
+  right: 0;
+  top: 0;
+  transform: translateY(-120%);
+}
+
 }
 
 

@@ -12,6 +12,7 @@ function App() {
   interface word{
     word:string
   }
+  
   const [randomNumber, setRandomNumber] = useState<number>(Math.floor(Math.random()*words.length))
   const[guessLevel, setGuessLevel] = useState<number>(0)
   const[currentGuess, setCurrentGuess] = useState<string>('')
@@ -41,6 +42,27 @@ function App() {
       document.getElementById('errorMessage')?.classList.add('makeOpaque')
       setTimeout(() => document.getElementById('errorMessage')?.classList.remove('makeOpaque'), 1000)
     }
+  }
+
+  function resetWord(){
+    setGuessLevel(0)
+    setCurrentGuess('')
+    reset()
+    setAllGuesses([])
+    setFound(false)
+    const resetRandomNumber = Math.floor(Math.random()*words.length)
+    setFinalWord(words[resetRandomNumber])
+    setFinalWordArray(words[resetRandomNumber].split(''))
+    document.getElementById('successMessage')?.classList.remove('makeOpaque')
+    setFinalWordLetterCount(words[resetRandomNumber].split('').reduce((acc:any,letter)=>{
+          acc[letter] = (acc[letter]||0)+1
+          return acc
+        },{})
+    )
+    const alphabetLetters = document.getElementById('alphabetDiv')?.querySelectorAll("*")
+    alphabetLetters?.forEach(element => {
+      element.classList.remove('bgGreen', 'bgYellow', 'bgGrey')
+    })
   }
 
   const alphabetKeys = alphabet.map((letter,i)=>{
@@ -386,8 +408,10 @@ function App() {
             </div>
           </div>
 
-          <div className='alphabetDiv'>
+          <div id='alphabetDiv' className='alphabetDiv'>
             {alphabetKeys}
+            <button className='resetButton absolute'
+            onClick={()=>resetWord()}>↻</button>
 
             <button
             onClick={()=>{setCurrentGuess((wordInput.current as HTMLInputElement).value.slice(0,(wordInput.current as HTMLInputElement).value.length-1));
