@@ -12,6 +12,7 @@ function App() {
   interface word{
     word:string
   }
+  
   const [randomNumber, setRandomNumber] = useState<number>(Math.floor(Math.random()*words.length))
   const[guessLevel, setGuessLevel] = useState<number>(0)
   const[currentGuess, setCurrentGuess] = useState<string>('')
