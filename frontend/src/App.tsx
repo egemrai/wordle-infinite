@@ -45,24 +45,27 @@ function App() {
   }
 
   function resetWord(){
-    setGuessLevel(0)
-    setCurrentGuess('')
-    reset()
-    setAllGuesses([])
-    setFound(false)
-    const resetRandomNumber = Math.floor(Math.random()*words.length)
-    setFinalWord(words[resetRandomNumber])
-    setFinalWordArray(words[resetRandomNumber].split(''))
-    document.getElementById('successMessage')?.classList.remove('makeOpaque')
-    setFinalWordLetterCount(words[resetRandomNumber].split('').reduce((acc:any,letter)=>{
-          acc[letter] = (acc[letter]||0)+1
-          return acc
-        },{})
-    )
-    const alphabetLetters = document.getElementById('alphabetDiv')?.querySelectorAll("*")
-    alphabetLetters?.forEach(element => {
-      element.classList.remove('bgGreen', 'bgYellow', 'bgGrey')
-    })
+    // setGuessLevel(0)
+    // setCurrentGuess('')
+    // reset()
+    // setAllGuesses([])
+    // setFound(false)
+    // const resetRandomNumber = Math.floor(Math.random()*words.length)
+    // setFinalWord(words[resetRandomNumber])
+    // setFinalWordArray(words[resetRandomNumber].split(''))
+    // document.getElementById('successMessage')?.classList.remove('makeOpaque')
+    // setFinalWordLetterCount(words[resetRandomNumber].split('').reduce((acc:any,letter)=>{
+    //       acc[letter] = (acc[letter]||0)+1
+    //       return acc
+    //     },{})
+    // )
+    // const alphabetLetters = document.getElementById('alphabetDiv')?.querySelectorAll("*")
+    // alphabetLetters?.forEach(element => {
+    //   element.classList.remove('bgGreen', 'bgYellow', 'bgGrey')
+    // })
+    const test = {"nick": "egem", "age": "31"}
+    localStorage.setItem("data",JSON.stringify(test))
+    console.log(JSON.parse(localStorage.getItem("data")!).nick)
   }
 
   const alphabetKeys = alphabet.map((letter,i)=>{
@@ -70,8 +73,8 @@ function App() {
       <button key={i} id={`${letter}`+'Letter'} className='alphabetLetterBox'
       onClick={()=>{
         if((wordInput.current as HTMLInputElement).value.length < 5){
-          {setCurrentGuess((wordInput.current as HTMLInputElement).value + letter);
-          (wordInput.current as HTMLInputElement).value = (wordInput.current as HTMLInputElement).value + letter}
+          setCurrentGuess((wordInput.current as HTMLInputElement).value + letter);
+          (wordInput.current as HTMLInputElement).value = (wordInput.current as HTMLInputElement).value + letter
         }
       }}>{letter}</button>
     )
