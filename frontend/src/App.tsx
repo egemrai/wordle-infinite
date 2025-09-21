@@ -4,6 +4,9 @@ import './App.css';
 import { useForm } from 'react-hook-form';
 import { Button, Form } from "react-bootstrap";
 import WordForTable from './components/WordForTable';
+import GuessWordForTable from './components/GuessWordForTable';
+import FinalWordForTable from './components/FinalWordForTable';
+import AlphabetKeys from './components/AlphabetKeys';
 import words from './data/words';
 import alphabet from './data/alphabet';
 //oyunu kazanamazsan da bi şeyler ekle, submit enter falan onu ayarla
@@ -45,40 +48,30 @@ function App() {
   }
 
   function resetWord(){
-    // setGuessLevel(0)
-    // setCurrentGuess('')
-    // reset()
-    // setAllGuesses([])
-    // setFound(false)
-    // const resetRandomNumber = Math.floor(Math.random()*words.length)
-    // setFinalWord(words[resetRandomNumber])
-    // setFinalWordArray(words[resetRandomNumber].split(''))
-    // document.getElementById('successMessage')?.classList.remove('makeOpaque')
-    // setFinalWordLetterCount(words[resetRandomNumber].split('').reduce((acc:any,letter)=>{
-    //       acc[letter] = (acc[letter]||0)+1
-    //       return acc
-    //     },{})
-    // )
+    setGuessLevel(0)
+    setCurrentGuess('')
+    reset()
+    setAllGuesses([])
+    setFound(false)
+    const resetRandomNumber = Math.floor(Math.random()*words.length)
+    setFinalWord(words[resetRandomNumber])
+    setFinalWordArray(words[resetRandomNumber].split(''))
+    document.getElementById('successMessage')?.classList.remove('makeOpaque')
+    setFinalWordLetterCount(words[resetRandomNumber].split('').reduce((acc:any,letter)=>{
+          acc[letter] = (acc[letter]||0)+1
+          return acc
+        },{})
+    )
     // const alphabetLetters = document.getElementById('alphabetDiv')?.querySelectorAll("*")
     // alphabetLetters?.forEach(element => {
     //   element.classList.remove('bgGreen', 'bgYellow', 'bgGrey')
     // })
-    const test = {"nick": "egem", "age": "31"}
-    localStorage.setItem("data",JSON.stringify(test))
-    console.log(JSON.parse(localStorage.getItem("data")!).nick)
+
+    // const test = {"nick": "egem", "age": "31"}
+    // localStorage.setItem("data",JSON.stringify(test))
+    // console.log(JSON.parse(localStorage.getItem("data")!).nick)
   }
 
-  const alphabetKeys = alphabet.map((letter,i)=>{
-    return (
-      <button key={i} id={`${letter}`+'Letter'} className='alphabetLetterBox'
-      onClick={()=>{
-        if((wordInput.current as HTMLInputElement).value.length < 5){
-          setCurrentGuess((wordInput.current as HTMLInputElement).value + letter);
-          (wordInput.current as HTMLInputElement).value = (wordInput.current as HTMLInputElement).value + letter
-        }
-      }}>{letter}</button>
-    )
-  })
 
   useEffect(()=>{
     setFinalWordLetterCount(finalWordArray.reduce((acc:any,letter)=>{
@@ -94,243 +87,6 @@ function App() {
   },[])
 
   
-  useEffect(()=>{
-    console.log("finalWordLetterCount:",finalWordLetterCount)
-    if(guessLevel===1){
-      const guess = document.getElementById('1stGuess')
-      
-      let letterCount:Record<string,number> = {...finalWordLetterCount} // Bulunması gereken kelimenin harflerinden tahmin edilen kelimenin harfleri yeşil denk gelirse, o arflerin sayısını düşüyorum finalWordLetterCount'den.
-      let foundCount = 5  // harf doğruysa 1 azalıcak, hepsi doğru olup 0 olduğunda oyun biticek
-
-      for(let i=0; i<5; i++){
-        if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          letterCount[finalWordArray[i]] = letterCount[finalWordArray[i]] -1
-        }
-      }
-
-      for(let i=0; i<5; i++){
-        if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          guess?.children[i].classList.add('bgGreen')                                                                 // tablodaki kutuyu yeşil yapmak için
-          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGreen')  // alfabeyi yeşil yapmak için
-          // letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1 //letterCountda harf yeşil yanarsa ve hala 1 tane daha varsa, 1 harf kalmasına rağmen 2 kere sarı yanmasın diye
-        }
-        else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] >0){
-          guess?.children[i].classList.add('bgYellow')                                                                // tablodaki kutuyu sarı yapmak için
-          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgYellow') // alfabeyi sarı yapmak için
-          letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1 //letterCountda harf sarı yanarsa, harfin değerini 1 düşürüyorum ki tekrar o harf gelirse 1 tane olmasına rağmen 2. harf de sarı yanıp 2 tane o harften varmış gibi göstermesin diye
-        }
-        else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] === undefined || letterCount[guess?.children[i].innerHTML.replace(' ','')!] === 0){
-          guess?.children[i].classList.add('bgGrey')                                                                  // tablodaki kutuyu gri yapmak için
-          if(!document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.contains('bgYellow')){
-            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // alfabeyi gri yapmak için
-          }   
-        }
-      }
-
-      for(let i=0; i<5; i++){
-        if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          foundCount --
-          if(foundCount === 0){
-            document.getElementById('successMessage')!.innerHTML = "İlk seferde bildin, hayattaki tüm şansını harcadın"
-            document.getElementById('successMessage')?.classList.add('makeOpaque')
-            // setTimeout(() => document.getElementById('successMessage')?.classList.remove('makeOpaque'), 2000)
-            setFound(true)
-          }
-        }
-      }
-      console.log("letterCount1.:",letterCount)
-    }
-
-    if(guessLevel===2){
-      const guess = document.getElementById('2ndGuess')
-
-      let letterCount:Record<string,number> = {...finalWordLetterCount} // Bulunması gereken kelimenin harflerinden tahmin edilen kelimenin harfleri yeşil denk gelirse, o arflerin sayısını düşüyorum finalWordLetterCount'den.
-      let foundCount = 5  // harf doğruysa 1 azalıcak, hepsi doğru olup 0 olduğunda oyun biticek
-
-      for(let i=0; i<5; i++){
-        if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          letterCount[finalWordArray[i]] = letterCount[finalWordArray[i]] -1
-        }
-      }
-
-      for(let i=0; i<5; i++){
-        if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          guess?.children[i].classList.add('bgGreen')                                                                 // tablodaki kutuyu yeşil yapmak için
-          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGreen')  // alfabeyi yeşil yapmak için
-          // letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1
-        }
-        else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] >0){
-          guess?.children[i].classList.add('bgYellow')                                                                // tablodaki kutuyu sarı yapmak için
-          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgYellow') // alfabeyi sarı yapmak için
-          letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1
-        }
-        else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] === undefined || letterCount[guess?.children[i].innerHTML.replace(' ','')!] === 0){
-          guess?.children[i].classList.add('bgGrey')                                                                  // tablodaki kutuyu gri yapmak için
-          if(!document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.contains('bgYellow')){
-            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // alfabeyi gri yapmak için
-          }   
-        }
-      }
-
-      for(let i=0; i<5; i++){
-        if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          foundCount --
-          if(foundCount === 0){
-            document.getElementById('successMessage')!.innerHTML = "İkinci seferde bildin wp"
-            document.getElementById('successMessage')?.classList.add('makeOpaque')
-            // setTimeout(() => document.getElementById('successMessage')?.classList.remove('makeOpaque'), 1000)
-            setFound(true)
-          }
-        }
-      }
-      console.log("letterCount2.:",letterCount)
-    }
-
-    if(guessLevel===3){
-      const guess = document.getElementById('3rdGuess')
-
-      let letterCount:Record<string,number> = {...finalWordLetterCount} // Bulunması gereken kelimenin harflerinden tahmin edilen kelimenin harfleri yeşil denk gelirse, o arflerin sayısını düşüyorum finalWordLetterCount'den.
-      let foundCount = 5  // harf doğruysa 1 azalıcak, hepsi doğru olup 0 olduğunda oyun biticek
-
-      for(let i=0; i<5; i++){
-        if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          letterCount[finalWordArray[i]] = letterCount[finalWordArray[i]] -1
-        }
-      }
-
-      for(let i=0; i<5; i++){
-        if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          guess?.children[i].classList.add('bgGreen')                                                                 // tablodaki kutuyu yeşil yapmak için
-          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGreen')  // alfabeyi yeşil yapmak için
-          // letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1
-        }
-        else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] >0){
-          guess?.children[i].classList.add('bgYellow')                                                                // tablodaki kutuyu sarı yapmak için
-          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgYellow') // alfabeyi sarı yapmak için
-          letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1
-        }
-        else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] === undefined || letterCount[guess?.children[i].innerHTML.replace(' ','')!] === 0){
-          guess?.children[i].classList.add('bgGrey')                                                                  // tablodaki kutuyu gri yapmak için
-          if(!document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.contains('bgYellow')){
-            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // alfabeyi gri yapmak için
-          }   
-        }
-      }
-
-      for(let i=0; i<5; i++){
-        if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          foundCount --
-          if(foundCount === 0){
-            document.getElementById('successMessage')!.innerHTML = "Üçüncü seferde bildin fena değil"
-            document.getElementById('successMessage')?.classList.add('makeOpaque')
-            // setTimeout(() => document.getElementById('successMessage')?.classList.remove('makeOpaque'), 1000)
-            setFound(true)
-          }
-        }
-      }
-      console.log("letterCount3.:",letterCount)
-      console.log("finalWordLetterCount.:",finalWordLetterCount)
-    }
-
-    if(guessLevel===4){
-      const guess = document.getElementById('4thGuess')
-
-      let letterCount:Record<string,number> = {...finalWordLetterCount} // Bulunması gereken kelimenin harflerinden tahmin edilen kelimenin harfleri yeşil denk gelirse, o arflerin sayısını düşüyorum finalWordLetterCount'den.
-      let foundCount = 5  // harf doğruysa 1 azalıcak, hepsi doğru olup 0 olduğunda oyun biticek
-
-      for(let i=0; i<5; i++){
-        if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          letterCount[finalWordArray[i]] = letterCount[finalWordArray[i]] -1
-        }
-      }
-
-      for(let i=0; i<5; i++){
-        if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          guess?.children[i].classList.add('bgGreen')                                                                 // tablodaki kutuyu yeşil yapmak için
-          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGreen')  // alfabeyi yeşil yapmak için
-          // letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1
-        }
-        else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] >0){
-          guess?.children[i].classList.add('bgYellow')                                                                // tablodaki kutuyu sarı yapmak için
-          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgYellow') // alfabeyi sarı yapmak için
-          letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1
-        }
-        else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] === undefined || letterCount[guess?.children[i].innerHTML.replace(' ','')!] === 0){
-          guess?.children[i].classList.add('bgGrey')                                                                  // tablodaki kutuyu gri yapmak için
-          if(!document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.contains('bgYellow')){
-            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // alfabeyi gri yapmak için
-          }   
-        }
-      }
-
-      for(let i=0; i<5; i++){
-        if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          foundCount --
-          if(foundCount === 0){
-            document.getElementById('successMessage')!.innerHTML = "Dördüncü seferde bildin kelime zordu herhalde"
-            document.getElementById('successMessage')?.classList.add('makeOpaque')
-            // setTimeout(() => document.getElementById('successMessage')?.classList.remove('makeOpaque'), 1000)
-            setFound(true)
-          }
-        }
-      }
-    }
-
-    if(guessLevel===5){
-      const guess = document.getElementById('5thGuess')
-      const correctWord = document.getElementById('correctWord')
-
-      let letterCount:Record<string,number> = {...finalWordLetterCount} // Bulunması gereken kelimenin harflerinden tahmin edilen kelimenin harfleri yeşil denk gelirse, o arflerin sayısını düşüyorum finalWordLetterCount'den.
-      let foundCount = 5  // harf doğruysa 1 azalıcak, hepsi doğru olup 0 olduğunda oyun biticek
-
-      for(let i=0; i<5; i++){
-        if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          letterCount[finalWordArray[i]] = letterCount[finalWordArray[i]] -1
-        }
-      }
-
-      for(let i=0; i<5; i++){
-        if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          guess?.children[i].classList.add('bgGreen')                                                                 // tablodaki kutuyu yeşil yapmak için
-          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGreen')  // alfabeyi yeşil yapmak için
-          // letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1
-        }
-        else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] >0){
-          guess?.children[i].classList.add('bgYellow')                                                                // tablodaki kutuyu sarı yapmak için
-          document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgYellow') // alfabeyi sarı yapmak için
-          letterCount[guess?.children[i].innerHTML.replace(' ','')!] = letterCount[guess?.children[i].innerHTML.replace(' ','')!] - 1
-        }
-        else if(letterCount[guess?.children[i].innerHTML.replace(' ','')!] === undefined || letterCount[guess?.children[i].innerHTML.replace(' ','')!] === 0){
-          guess?.children[i].classList.add('bgGrey')                                                                  // tablodaki kutuyu gri yapmak için
-          if(!document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.contains('bgYellow')){
-            document.getElementById(`${guess?.children[i].innerHTML.replace(' ','')}Letter`)?.classList.add('bgGrey') // alfabeyi gri yapmak için
-          }   
-        }
-      }
-
-      for(let i=0; i<5; i++){
-        if(guess?.children[i].innerHTML.replace(' ','') === finalWordArray[i]){
-          foundCount --
-          if(foundCount === 0){
-            document.getElementById('successMessage')!.innerHTML = "Sonuncuda bildin ygs türkçe 17net herhalde"
-            document.getElementById('successMessage')?.classList.add('makeOpaque')
-            // setTimeout(() => document.getElementById('successMessage')?.classList.remove('makeOpaque'), 1000)
-            setFound(true)
-          }
-        }
-      }
-      if(foundCount > 0){
-        document.getElementById('successMessage')!.innerHTML = "Bir kelimeyi bulamadın hoş geldin demet akalın"
-        document.getElementById('successMessage')?.classList.add('makeOpaque')
-
-        for(let i=0; i<5; i++){
-          correctWord?.children[i].classList.add('bgGreen')
-        }
-      }
-    }
-  },[guessLevel])
-  
-
   return (
     <>
       <div className="allPage" 
@@ -344,75 +100,33 @@ function App() {
       }}>
         <div id='mainDiv' className="allWordsDiv test">
           <div className="wordDiv relative">
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <div id='1stGuess' className="wordDiv absolute">
-              {guessLevel===0 ? <WordForTable word={currentGuess}/> : <WordForTable word={allGuesses[0]||''}/>}
-            </div>
+              {guessLevel===0 ? <GuessWordForTable word={currentGuess}/> : <WordForTable word={allGuesses[0]||''} finalWordLetterCount={finalWordLetterCount} guessLevel={guessLevel} order={1} finalWordArray={finalWordArray} setFound={setFound} />}
             <p id='errorMessage' className='errorMessage absolute'>böyle kelime mi var</p>
             <p id='successMessage' className='errorMessage absolute'>e</p>
           </div>
 
           <div className="wordDiv relative">
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <div id='2ndGuess' className="wordDiv absolute">
-              {guessLevel===1 ? <WordForTable word={currentGuess}/> : <WordForTable word={allGuesses[1]||''}/>}
-            </div>
+              {guessLevel===1 ? <GuessWordForTable word={currentGuess}/> : <WordForTable word={allGuesses[1]||''} finalWordLetterCount={finalWordLetterCount} guessLevel={guessLevel} order={2} finalWordArray={finalWordArray} setFound={setFound}/>}
           </div>
 
           <div className="wordDiv relative">
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <div id='3rdGuess' className="wordDiv absolute">
-              {guessLevel===2 ? <WordForTable word={currentGuess}/> : <WordForTable word={allGuesses[2]||''}/>}
-            </div>
+              {guessLevel===2 ? <GuessWordForTable word={currentGuess}/> : <WordForTable word={allGuesses[2]||''} finalWordLetterCount={finalWordLetterCount} guessLevel={guessLevel} order={3} finalWordArray={finalWordArray} setFound={setFound}/>}
           </div>
 
           <div className="wordDiv relative">
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <div id='4thGuess' className="wordDiv absolute">
-              {guessLevel===3 ? <WordForTable word={currentGuess}/> : <WordForTable word={allGuesses[3]||''}/>}
-            </div>
+              {guessLevel===3 ? <GuessWordForTable word={currentGuess}/> : <WordForTable word={allGuesses[3]||''} finalWordLetterCount={finalWordLetterCount} guessLevel={guessLevel} order={4} finalWordArray={finalWordArray} setFound={setFound}/>}
           </div>
 
           <div className="wordDiv relative">
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <div id='5thGuess' className="wordDiv absolute">
-              {guessLevel===4 ? <WordForTable word={currentGuess}/> : <WordForTable word={allGuesses[4]||''}/>}
-            </div>
+              {guessLevel===4 ? <GuessWordForTable word={currentGuess}/> : <WordForTable word={allGuesses[4]||''} finalWordLetterCount={finalWordLetterCount} guessLevel={guessLevel} order={5} finalWordArray={finalWordArray} setFound={setFound}/>}
           </div>
 
           <div className="wordDiv relative">
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <p className="letterDiv"></p>
-            <div id='correctWord' className="wordDiv absolute">
-              {guessLevel===5 && found ===false && <WordForTable word={finalWord}/> }
-            </div>
+              {(guessLevel===5 && found ===false) ? <FinalWordForTable word={finalWord} setFound={setFound}/> : <GuessWordForTable word={''}/> }
           </div>
 
           <div id='alphabetDiv' className='alphabetDiv'>
-            {alphabetKeys}
+            {<AlphabetKeys allGuesses={allGuesses} finalWord={finalWord} guessLevel={guessLevel} setCurrentGuess={setCurrentGuess} wordInput={wordInput}/>}
             <button className='resetButton absolute'
             onClick={()=>resetWord()}>↻</button>
 
@@ -437,9 +151,6 @@ function App() {
               enter
             </button>
           </div>
-          
-
-          
 
         </div>
 
@@ -469,7 +180,7 @@ function App() {
                   }
                 })}
           ref={(e:HTMLElement |null) => {
-            register("word").ref(e); // RHF ref
+            register("word").ref(e); // RHF(react hook form) ref
             wordInput.current = e;   // kendi ref
           }}
           onInput={(e) => {

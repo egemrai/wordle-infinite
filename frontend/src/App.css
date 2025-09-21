@@ -18,6 +18,40 @@
   
 }
 
+.letterDiv.bgGreen{
+  animation: bgGreen 0s linear 0.5s,
+             transform 1s linear;
+}
+.letterDiv.bgYellow{
+  animation: bgYellow 0s linear 0.5s,
+             transform 1s linear;
+}
+.letterDiv.bgGrey{
+  animation: bgGrey 0s linear 0.5s,
+             transform 1s linear;
+}
+
+@keyframes bgGreen{
+  from {background-color: rgb(18, 18, 18);}
+  to {background-color: rgb(8, 84, 8) !important;}
+}
+
+@keyframes bgYellow{
+  from {background-color: rgb(18, 18, 18);}
+  to {background-color: rgb(193, 199, 20) !important;}
+}
+
+@keyframes bgGrey{
+  from {background-color: rgb(18, 18, 18);}
+  to {background-color: rgb(61, 58, 58);}
+}
+
+@keyframes transform{
+  from {transform: rotateX(0);}
+  to {transform: rotateX(360deg);}
+
+}
+
 .allPage{
   height: 100%;
   width: 100%;
@@ -61,9 +95,23 @@
   justify-content: center;
   align-items: center;
   font-family: 'Helvetica Neue';
-  transition: background 0s linear 0.5s, transform 1s linear;
+  /* transition: background 0s linear 0.5s, transform 1s linear; */
   color: white;
-  background-color: rgb(18, 18, 18);
+  /* background-color: rgb(18, 18, 18); */
+  animation: color 0s linear 0.5s,
+             transform 1s linear;
+}
+
+@keyframes color{
+  from {background-color: rgb(18, 18, 18);}
+  to {background-color: rgb(8, 84, 8) !important;}
+
+}
+
+@keyframes transform{
+  from {transform: rotate(0);}
+  to {transform: rotate(360deg);}
+
 }
 
 .alphabetDiv{
@@ -195,7 +243,7 @@
   justify-content: center;
 }
 
-.letterDiv{
+/* .letterDiv{
   height: 58px;
   width: 58px;
   border: 1px rgb(100, 98, 98) solid;
@@ -209,7 +257,44 @@
   transition: background 0s linear 0.5s, transform 1s linear;
   color: white;
   background-color: rgb(18, 18, 18);
+} */
+
+.guessLetterDiv{
+  height: 58px;
+  width: 58px;
+  border: 1px rgb(100, 98, 98) solid;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  font-size: 60px;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Helvetica Neue';
+  /* transition: background 0s linear 0.5s, transform 1s linear; */
+  color: white;
+  /* background-color: rgb(18, 18, 18); */
 }
+
+.letterDiv{
+  height: 58px;
+  width: 58px;
+  border: 1px rgb(100, 98, 98) solid;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  font-size: 60px;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Helvetica Neue';
+  /* transition: background 0s linear 0.5s, transform 1s linear; */
+  color: white;
+  /* background-color: rgb(18, 18, 18); */
+  /* animation: color 0s linear 0.5s,
+             transform 1s linear; */
+  /* animation-play-state: running; */
+}
+
+
 
 .alphabetDiv{
   width: 570px;
@@ -314,19 +399,19 @@
 .bgGreen{
   background-color: rgb(8, 84, 8) !important;
   /* transform: rotate(360deg); */
-  transform: rotateX(360deg);
+  /* transform: rotateX(360deg); */
 }
 
 .bgYellow{
   background-color: rgb(193, 199, 20);
   /* transform: rotate(360deg); */
-  transform: rotateX(360deg);
+  /* transform: rotateX(360deg); */
 }
 
 .bgGrey{
   background-color: rgb(61, 58, 58);
   /* transform: rotate(360deg); */
-  transform: rotateX(360deg);
+  /* transform: rotateX(360deg); */
 }
 
 .wordInput{
