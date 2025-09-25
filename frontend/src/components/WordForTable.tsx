@@ -46,10 +46,6 @@ function WordForTable({word,finalWordLetterCount,guessLevel,order,finalWordArray
             case 5:
             document.getElementById('successMessage')!.innerHTML = "Sonuncuda bildin ygs türkçe 17net herhalde"
             break
-
-            case 6:
-            document.getElementById('successMessage')!.innerHTML = "İkinci seferde bildin wp"
-            break
           }
           
           document.getElementById('successMessage')?.classList.add('makeOpaque')

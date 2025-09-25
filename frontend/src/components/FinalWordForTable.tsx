@@ -3,14 +3,17 @@
 interface FinalWordForTableProps{
     word: string
     setFound: (e:boolean)=>void
+    found: boolean
 }
 
-function FinalWordForTable({word,setFound}:FinalWordForTableProps){
+function FinalWordForTable({word,setFound,found}:FinalWordForTableProps){
 
-    document.getElementById('successMessage')!.innerHTML = "Bir kelimeyi bulamadın hoş geldin demet akalın"
-        
-    document.getElementById('successMessage')?.classList.add('makeOpaque')
-    setFound(false)
+    if(!found){
+        document.getElementById('successMessage')!.innerHTML = "Bir kelimeyi bulamadın hoş geldin demet akalın"    
+        document.getElementById('successMessage')?.classList.add('makeOpaque')
+    }
+    
+    // setFound(false)
 
     const guessTable = Array.from({length:5}).map((_,i)=>{                                                       
         document.getElementById(`${word[i]}Letter`)?.classList.add('bgGreen')  // alfabeyi yeşil yapmak için

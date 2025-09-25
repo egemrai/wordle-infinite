@@ -1,14 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { useForm } from 'react-hook-form';
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import WordForTable from './components/WordForTable';
 import GuessWordForTable from './components/GuessWordForTable';
 import FinalWordForTable from './components/FinalWordForTable';
 import AlphabetKeys from './components/AlphabetKeys';
 import words from './data/words';
-import alphabet from './data/alphabet';
 //oyunu kazanamazsan da bi şeyler ekle, submit enter falan onu ayarla
 function App() {
 
@@ -35,11 +33,25 @@ function App() {
 
   function pushNewWord(data:word){
     if(words.includes(data.word)){
-      setAllGuesses((prev)=>[...prev,data.word])
-      setGuessLevel((prev)=>prev+1);
+      setAllGuesses((prev)=>{
+          const newAllGuesses = [...prev,data.word]
+          localStorage.setItem("allGuesses",JSON.stringify(newAllGuesses))
+          return newAllGuesses
+        }
+      )
+      setGuessLevel((prev)=>{
+        const newGuessLevel = prev+1
+        localStorage.setItem("guessLevel",JSON.stringify(newGuessLevel))
+        return newGuessLevel
+      })
       reset() // reset direkt inputları sıfırlıyor, alttaki as HTMLInputElement dalgası yerine bunu kullanabilirim
       // (wordInput.current as HTMLInputElement).value = ("")   // react hook form için daha iyi, submit ettiğimde yeni guess yerine öncekini kullanıyor ref ile inputu sildiğimde
       setCurrentGuess('')
+
+      // localStorage.setItem("allGuesses",JSON.stringify([...allGuesses!,data.word]))
+      // localStorage.setItem("guessLevel",JSON.stringify(guessLevel!+1))
+      localStorage.setItem("finalWord",JSON.stringify(finalWord))
+      localStorage.setItem("finalWordArray",JSON.stringify(finalWord!.split('')))
     }
     else{
       document.getElementById('errorMessage')?.classList.add('makeOpaque')
@@ -48,11 +60,11 @@ function App() {
   }
 
   function resetWord(){
+    setFound(false)
     setGuessLevel(0)
     setCurrentGuess('')
     reset()
     setAllGuesses([])
-    setFound(false)
     const resetRandomNumber = Math.floor(Math.random()*words.length)
     setFinalWord(words[resetRandomNumber])
     setFinalWordArray(words[resetRandomNumber].split(''))
@@ -62,16 +74,38 @@ function App() {
           return acc
         },{})
     )
-    // const alphabetLetters = document.getElementById('alphabetDiv')?.querySelectorAll("*")
-    // alphabetLetters?.forEach(element => {
-    //   element.classList.remove('bgGreen', 'bgYellow', 'bgGrey')
-    // })
-
-    // const test = {"nick": "egem", "age": "31"}
-    // localStorage.setItem("data",JSON.stringify(test))
-    // console.log(JSON.parse(localStorage.getItem("data")!).nick)
+    
+    localStorage.clear()
   }
 
+
+  useEffect(()=>{
+    const userAgent = navigator.userAgent //mobile kontrol
+    setIsMobile(/android|iphone|ipad|ipod/i.test(userAgent))
+
+    wordInput.current?.focus()
+
+    try {
+    const cachedAllGuesses = localStorage.getItem("allGuesses")
+    const cachedGuessLevel = localStorage.getItem("guessLevel")
+    const cachedFinalWord = localStorage.getItem("finalWord")
+    const cachedFinalWordArray = localStorage.getItem("finalWordArray")
+
+    if (cachedAllGuesses && cachedGuessLevel && cachedFinalWord && cachedFinalWordArray) {
+      setAllGuesses(JSON.parse(cachedAllGuesses))
+      setFinalWord(JSON.parse(cachedFinalWord))
+      setFinalWordArray(JSON.parse(cachedFinalWordArray))
+      setGuessLevel(JSON.parse(cachedGuessLevel))
+    } 
+    else {
+    setAllGuesses([])
+    setGuessLevel(0)
+    }
+    }
+    catch (err) {
+      console.error("localStorage parse hatası:", err);
+    }
+  },[])
 
   useEffect(()=>{
     setFinalWordLetterCount(finalWordArray.reduce((acc:any,letter)=>{
@@ -79,12 +113,9 @@ function App() {
           return acc
         },{})
     )
-
-    const userAgent = navigator.userAgent //mobile kontrol
-    setIsMobile(/android|iphone|ipad|ipod/i.test(userAgent))
-
-    wordInput.current?.focus()
-  },[])
+    wordInput.current?.focus() // kelime doğru bilinirse ve reset atılırsa, sonraki klavye vuruşunda reset butonunu focusluyordu. onu önlemek için
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[finalWord])
 
   
   return (
@@ -100,7 +131,7 @@ function App() {
       }}>
         <div id='mainDiv' className="allWordsDiv test">
           <div className="wordDiv relative">
-              {guessLevel===0 ? <GuessWordForTable word={currentGuess}/> : <WordForTable word={allGuesses[0]||''} finalWordLetterCount={finalWordLetterCount} guessLevel={guessLevel} order={1} finalWordArray={finalWordArray} setFound={setFound} />}
+              {guessLevel===0 ? <GuessWordForTable word={currentGuess}/> : <WordForTable word={allGuesses![0]||''} finalWordLetterCount={finalWordLetterCount} guessLevel={guessLevel} order={1} finalWordArray={finalWordArray} setFound={setFound} />}
             <p id='errorMessage' className='errorMessage absolute'>böyle kelime mi var</p>
             <p id='successMessage' className='errorMessage absolute'>e</p>
           </div>
@@ -122,7 +153,7 @@ function App() {
           </div>
 
           <div className="wordDiv relative">
-              {(guessLevel===5 && found ===false) ? <FinalWordForTable word={finalWord} setFound={setFound}/> : <GuessWordForTable word={''}/> }
+              {(guessLevel===5 && found ===false) ? <FinalWordForTable word={finalWord} found={found} setFound={setFound}/> : (found ? <FinalWordForTable word={finalWord} found={found} setFound={setFound}/> : <GuessWordForTable word={''}/>)   }
           </div>
 
           <div id='alphabetDiv' className='alphabetDiv'>
