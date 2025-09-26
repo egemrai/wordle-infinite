@@ -7,7 +7,7 @@ interface GuessWordForTableProps{
 function GuessWordForTable({word}:GuessWordForTableProps){
 
     const guessTable = Array.from({length:5}).map((_,i)=>{
-        return <p key={i} className="guessLetterDiv "> {word[i]}</p>
+        return <p key={i} className="letterDiv "> {word[i]}</p>
     })
     return(
         <>

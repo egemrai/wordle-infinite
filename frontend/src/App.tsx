@@ -130,10 +130,11 @@ function App() {
         }
       }}>
         <div id='mainDiv' className="allWordsDiv test">
+          <p id='errorMessage' className='errorMessage absolute'>böyle kelime mi var</p>
+          <p id='successMessage' className='errorMessage absolute'>e</p>
           <div className="wordDiv relative">
               {guessLevel===0 ? <GuessWordForTable word={currentGuess}/> : <WordForTable word={allGuesses![0]||''} finalWordLetterCount={finalWordLetterCount} guessLevel={guessLevel} order={1} finalWordArray={finalWordArray} setFound={setFound} />}
-            <p id='errorMessage' className='errorMessage absolute'>böyle kelime mi var</p>
-            <p id='successMessage' className='errorMessage absolute'>e</p>
+            
           </div>
 
           <div className="wordDiv relative">
