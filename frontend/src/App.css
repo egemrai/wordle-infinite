@@ -217,11 +217,12 @@
 
   .allWordsDiv{
   margin: 5% auto 0;
-  width: 30%;
-  min-width: 500px;
-  height: 80vh;
-  min-height: 700px;
-  /* border: 1px red solid; */
+  width: 32vw;
+  /* min-width: 500px; */
+  /* height: 70vh; */
+  /* min-height: 500px; */
+  aspect-ratio: 30/34;
+  border: 1px red solid;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -231,25 +232,26 @@
 
 .wordDiv{
   width: 100%;
-  height: 8%;
-  /* border: 1px lightgreen solid; */
+  /* height: 10%; */
+  border: 1px lightgreen solid;
   display: grid;
-  grid-template-columns: repeat(5, 10%);
-  gap: 1.5%;
+  grid-template-columns: repeat(5,10%);
+  gap: 2%;
   justify-content: center;
 }
 
 .letterDiv{
-  height: 100%;
+  /* height: 100%; */
   /* min-height: 58px; */
-  width: 100%;
+  /* width: 100%; */
   /* min-width: 58px; */
+  aspect-ratio: 1 / 1;
+  /* genişlik ve yüksekliği birbirine eşitleme, ikisinin de px değeri varsa öncelik vermek yerine bu özellik çalışmıyormuş sanırım*/
   border: 1px rgb(100, 98, 98) solid;
   display: flex;
   margin: 0;
   padding: 0;
-  font-size: 380%;
-  aspect-ratio: 1 / 1;   /* genişlik ve yüksekliği birbirine eşitleme, ikisinin de px değeri varsa öncelik vermek yerine bu özellik çalışmıyormuş sanırım*/
+  font-size: 4.2vh;
   justify-content: center;
   align-items: center;
   font-family: 'Helvetica Neue';
@@ -258,14 +260,15 @@
 
 .alphabetDiv{
   width: 100%;
-  min-width: 570px;
-  height: 26%;
-  min-height: 200px;
+  /* min-width: 570px; */
+  /* height: 26%; */
+  /* min-height: 200px; */
+  aspect-ratio: 3 / 1;
   display: flex;
   position: relative;
   justify-content: center;
   flex-wrap: wrap;
-  /* border: 1px rgb(100, 98, 98) solid; */
+  border: 1px rgb(100, 98, 98) solid;
 }
 
 .alphabetLetterBox{
@@ -292,7 +295,7 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  transform: translate(-50%,-14%);
+  transform: translate(-20%,-16%);
   margin: 1%;
   padding: 0;
   font-size: 30px;
@@ -311,7 +314,7 @@
   position: absolute;
   right: 0;
   bottom: 0;
-  transform: translate(70%,-14%);
+  transform: translate(45%,-16%);
   margin: 1%;
   padding: 0;
   font-size: 180%;
@@ -323,10 +326,11 @@
 }
 
 .errorMessage{
-  height: 7%;
-  min-height: 60px;
-  width: 15%;
-  min-width: 320px;
+  /* height: 7%; */
+  /* min-height: 60px; */
+  width: 18%;
+  /* min-width: 320px; */
+  aspect-ratio: 5/1;
   justify-content: center;
   text-align: center;
   display: flex;
@@ -344,17 +348,18 @@
 }
 
 .resetButton{
-  height: 30%;
-  min-height: 60px;
+  /* height: 30%; */
+  /* min-height: 60px; */
+  width: 10%;
   aspect-ratio:  1/1;
   color: white;
-  font-size: 300%;
+  font-size: 200%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgb(18, 18, 18);
   border: 1px rgb(100, 98, 98) solid;
-  border-radius: 30px;
+  border-radius: 100px;
   right: 0;
   top: 0;
   transform: translateY(-120%);
