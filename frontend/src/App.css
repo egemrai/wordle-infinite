@@ -62,23 +62,25 @@
 
 .allWordsDiv{
   margin: 18% auto 0;
-  width: 20%;
-  min-width: 400px;
-  height: 80vh;
-  min-height: 600px;
+  width: 100vw;
+  /* min-width: 400px; */
+  /* height: 80vh; */
+  /* min-height: 600px; */
+  aspect-ratio: 30/37;
   /* border: 1px red solid; */
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-content: center;
   gap: 1.5%;
   
 }
 
 .wordDiv{
   width: 100%;
-  min-width: 500px;
-  height: 1%;
-  min-height: 50px;
+  /* min-width: 500px; */
+  /* height: 1%; */
+  /* min-height: 50px; */
   /* border: 1px darkblue solid; */
   display: grid;
   grid-template-columns: repeat(5, 10%);
@@ -87,14 +89,14 @@
 }
 
 .letterDiv{
-  height: 1%;
-  min-height: 49px;
+  /* height: 1%; */
+  /* min-height: 49px; */
   aspect-ratio: 1/1;
   border: 1px rgb(100, 98, 98) solid;
   display: flex;
   margin: 0;
   padding: 0;
-  font-size: 300%;
+  font-size: 3.9vh;
   justify-content: center;
   align-items: center;
   font-family: 'Helvetica Neue';
@@ -108,61 +110,62 @@
 
 .alphabetDiv{
   width: 100%;
-  min-width: 400px;
-  height: 1%;
-  min-height: 200px;
-  margin-top: 20px;
+  /* min-width: 400px; */
+  /* height: 2%; */
+  /* min-height: 200px; */
+  aspect-ratio: 7/3;
   display: flex;
+  margin-top: 1vh;
+  gap: 2%;
   position: relative;
   justify-content: center;
+  /* text-align: center; */
   flex-wrap: wrap;
   /* border: 1px rgb(100, 98, 98) solid; */
 }
 
 .alphabetLetterBox{
-  height: 1%;
-  min-height: 40px;
+  height: 22%;
   aspect-ratio: 1/1;
   display: flex;
-  margin: 1%;
   padding: 0;
-  font-size: 200%;
+  margin: 0;
+  font-size: 3.8vh;
   justify-content: center;
   align-items: center;
-  transition: background 0s linear 1s;
+  /* text-align: center; */
   color: white;
+  font-family: 'Helvetica Neue';
   background-color: rgb(18, 18, 18);
-  border: 1px rgb(100, 98, 98) solid;
+  /* border: 1px rgb(100, 98, 98) solid; */
 }
 
 .deleteButton{
-  height: 1%;
-  min-height: 40px;
+  height: 22%;
   aspect-ratio: 1/1;
   display: flex;
   position: absolute;
   left: 0;
   bottom: 0;
-  transform: translate(60%,-5%);
+  transform: translate(110%,4%);
   margin: 1%;
   padding: 0;
-  font-size: 200%;
+  font-size: 3.8vh;
   justify-content: center;
   align-items: center;
   color: white;
   background-color: rgb(18, 18, 18);
-  border: 1px rgb(100, 98, 98) solid;
+  /* border: 1px rgb(100, 98, 98) solid; */
 }
 
 .enterButton{
-  height: 1%;
-  min-height: 40px;
+  height: 22%;
   aspect-ratio: 3/2;
   display: flex;
   position: absolute;
   right: 0;
   bottom: 0;
-  transform: translate(-18%,-5%);
+  transform: translate(-14%,4%);
   margin: 1%;
   padding: 0;
   font-size: 26px;
@@ -170,14 +173,15 @@
   align-items: center;
   color: white;
   background-color: rgb(18, 18, 18);
-  border: 1px rgb(100, 98, 98) solid;
+  /* border: 1px rgb(100, 98, 98) solid; */
 }
 
 .errorMessage{
-  height: 7%;
-  min-height: 60px;
-  width: 15%;
-  min-width: 320px;
+  /* height: 7%; */
+  /* min-height: 60px; */
+  width: 100%;
+  /* min-width: 320px; */
+  aspect-ratio: 7/1;
   justify-content: center;
   text-align: center;
   display: flex;
@@ -195,11 +199,10 @@
 }
 
 .resetButton{
-  height: 1%;
-  min-height: 40px;
+  height: 30%;
   aspect-ratio:  1/1;
   color: white;
-  font-size: 170%;
+  font-size: 5.6vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -222,7 +225,7 @@
   /* height: 70vh; */
   /* min-height: 500px; */
   aspect-ratio: 30/34;
-  border: 1px red solid;
+  /* border: 1px red solid; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -233,7 +236,7 @@
 .wordDiv{
   width: 100%;
   /* height: 10%; */
-  border: 1px lightgreen solid;
+  /* border: 1px lightgreen solid; */
   display: grid;
   grid-template-columns: repeat(5,10%);
   gap: 2%;
@@ -268,12 +271,11 @@
   position: relative;
   justify-content: center;
   flex-wrap: wrap;
-  border: 1px rgb(100, 98, 98) solid;
+  /* border: 1px rgb(100, 98, 98) solid; */
 }
 
 .alphabetLetterBox{
   height: 25%;
-  min-height: 50px;
   aspect-ratio:  1/1;
   display: flex;
   margin: 0.5%;
